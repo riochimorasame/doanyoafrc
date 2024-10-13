@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéos DOANIO AFRICA</title>
+    <style>
+        /* Votre CSS reste inchangé */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 50%;
+            font-size: 16px;
+        }
+
+        .video-gallery {
+            margin: 40px 0;
+        }
+
+        .video-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .video-item {
+            margin: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DOANIO AFRICA</h1>
+            <p>Des vidéos</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="videos.html">Vidéos</a></li>
+            <li><a href="photos.html">Photos</a></li>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="contacte.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher une vidéo..." onkeyup="filterVideos()">
+        </div>
+
+        <section class="video-gallery">
+            <div class="video-grid" id="videoGrid">
+                <!-- Ajout d'ID uniques aux iframes -->
+                <div class="video-item" data-title="domotique">
+                    <iframe id="player1" src="https://www.youtube.com/embed/8x2nPaKtBEc" frameborder="0" allowfullscreen></iframe>
+                    <p>Prototype 1 : Domotique - Maison Intelligente Legran</p>
+                </div>
+                <div class="video-item" data-title="énergie solaire">
+                    <iframe id="player2" src="https://www.youtube.com/embed/alyLWA-H2Ao" frameborder="0" allowfullscreen></iframe>
+                    <p>Les panneaux photovoltaïques</p>
+                </div>
+                <div class="video-item" data-title="énergie solaire">
+                    <iframe id="player3" src="https://www.youtube.com/embed/ZiyiaQPSMMc" frameborder="0" allowfullscreen></iframe>
+                    <p>Des installations électriques Legrand pour l’hôpital d’Aix-Pertuis</p>
+                </div>
+                <div class="video-item" data-title="domotique">
+                    <iframe id="player4" src="https://www.youtube.com/embed/n0p4D-4QBvY" frameborder="0" allowfullscreen></iframe>
+                    <p>Secteur Énergie et ressources | Électricité industrielle | CIMA+</p>
+                </div>
+                <div class="video-item" data-title="énergie renouvelable">
+                    <iframe id="player5" src="https://www.youtube.com/embed/QokxBT7o_tc" frameborder="0" allowfullscreen></iframe>
+                    <p>Installations électriques d'une maison - Complete Electrical House Wiring</p>
+                </div>
+                <!-- Ajoutez plus de vidéos au besoin en continuant la numérotation des IDs -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DOANIO AFRICA - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Inclusion de l'API IFrame de YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        function filterVideos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let videos = document.querySelectorAll('.video-item');
+
+            videos.forEach(video => {
+                let title = video.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    video.style.display = 'block';
+                } else {
+                    video.style.display = 'none';
+                }
+            });
+        }
+
+        // Tableau pour stocker les objets des lecteurs YouTube
+        var players = [];
+
+        // Fonction appelée par l'API YouTube lorsque celle-ci est prête
+        function onYouTubeIframeAPIReady() {
+            // Sélectionne tous les iframes avec un ID commençant par "player"
+            var playerElements = document.querySelectorAll('iframe[id^="player"]');
+            playerElements.forEach(function(iframe) {
+                var player = new YT.Player(iframe.id, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+                players.push(player);
+            });
+        }
+
+        // Fonction appelée lorsqu'un état du lecteur change
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                players.forEach(function(player) {
+                    if (player != event.target) {
+                        player.pauseVideo();
+                    }
+                });
+            }
+        }
+
+        // Affichage de messages dans la console pour déboguer
+        console.log("API YouTube chargée et lecteurs prêts.");
+    </script>
+</body>
+</html>

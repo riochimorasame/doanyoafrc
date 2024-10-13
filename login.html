@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - ProTech Électricité</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Connexion</h2>
+        <form id="login-form" onsubmit="return checkLogin()">
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Se connecter</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <script>
+        // Liste des utilisateurs (objet de démonstration)
+        let users = {
+            "JOSUE": "josue code",
+            "ENOCH": "enoch code",
+            "TEKOU": "tekou code",
+            "GRACE": "grace code@",
+            "SENYO": "senyo code@",
+            
+        };
+
+        // Informations administrateur
+        const admin = {
+            username: "riochi",
+            password: "ATNOLOgi88206925058"
+        };
+
+        function checkLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (username === admin.username && password === admin.password) {
+                window.location.href = "admin.html"; // Redirection vers la page admin
+                return false;
+            } else if (users[username] && users[username] === password) {
+                window.location.href = "personnelle.html"; // Redirection vers la page utilisateur
+                return false;
+            } else {
+                errorMessage.textContent = "Nom d'utilisateur ou mot de passe incorrect.";
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

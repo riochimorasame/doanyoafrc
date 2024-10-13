@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Photos DOANIO AFRICA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 50%;
+            font-size: 16px;
+        }
+
+        .photo-gallery {
+            margin: 40px 0;
+        }
+
+        .photo-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .photo-item {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .photo-item img {
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DOANIO AFRICA</h1>
+            <p>Découvrez nos photos </p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="videos.html">Vidéos</a></li>
+            <li><a href="photos.html">Photos</a></li>
+           <li> <a href="contacte.html">video </a></li>
+           <li> <a href="index.html">acceuille</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher une photo..." onkeyup="filterPhotos()">
+        </div>
+
+        <section class="photo-gallery">
+            <div class="photo-grid" id="photoGrid">
+                <div class="photo-item" data-title="domotique">
+                    <a href="#"><img src="https://zupimages.net/up/24/41/v4qb.jpeg" alt="" /></a>
+                    <p>Prototype 1 :énergies renouvelables </p>
+                </div>
+                <div class="photo-item" data-title="énergie solaire">
+                    <a href="#"><img src="https://zupimages.net/up/24/41/w215.jpeg" alt="" /></a>
+                    <p>Prototype 2 : Énergie Solaire pour Bâtiments Industriels</p>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DOANIO AFRICA - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterPhotos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let photos = document.querySelectorAll('.photo-item');
+
+            photos.forEach(photo => {
+                let title = photo.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    photo.style.display = 'block';
+                } else {
+                    photo.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
