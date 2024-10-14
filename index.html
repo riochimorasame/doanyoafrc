@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f7f8fa;
+            overflow-x: hidden; /* Évite le défilement horizontal */
         }
 
         header {
@@ -36,6 +37,11 @@
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #007bff;
         }
 
         .hero {
@@ -46,6 +52,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: fadeIn 2s;
         }
 
         .hero h2 {
@@ -65,6 +72,7 @@
             margin-top: 0;
             font-size: 36px;
             color: #333;
+            animation: slideIn 0.5s;
         }
 
         .service-box {
@@ -75,20 +83,24 @@
         }
 
         .service {
-            display: flex; /* Ajouté */
-            flex-direction: column; /* Aligne le contenu verticalement */
-            align-items: center; /* Centre horizontalement */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             background-color: #fff;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             width: 30%;
             margin: 20px;
             padding: 20px;
             border-radius: 10px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s;
         }
 
         .service:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .service img {
@@ -96,6 +108,11 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .service img:hover {
+            transform: scale(1.1);
         }
 
         .service h4 {
@@ -126,13 +143,13 @@
             border-radius: 5px;
             margin-top: 20px;
             display: inline-block;
+            transition: background-color 0.3s;
         }
 
         .btn:hover {
             background-color: #0056b3;
         }
 
-        /* Media Queries pour tablettes et téléphones portables */
         @media (max-width: 1024px) {
             .service-box {
                 flex-direction: column;
@@ -213,6 +230,22 @@
                 font-size: 14px;
             }
         }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 
@@ -255,26 +288,21 @@
     </div>
 
     <div class="container" id="projets">
-        <h3>Nos Surpositions</h3>
+        <h3>Nos Projets</h3>
         <div class="service-box">
             <div class="service">
                 <a href="videos.html"><img src="https://zupimages.net/up/24/41/ncpu.jpeg" alt="projet1" /></a>
-                <h4>La domotique</h4>
-                <p> La domotique est un ensemble de technologies permettant de centraliser, automatiser et contrôler les différentes fonctions d’une maison via une interface unique. </p>
+                <h4>La Domotique</h4>
+                <p>La domotique est un ensemble de technologies permettant de centraliser, automatiser et contrôler les différentes fonctions d’une maison via une interface unique.</p>
             </div>
 
             <div class="service">
                 <a href="videos.html"><img src="https://zupimages.net/up/24/41/9ko7.jpeg" alt="projet2" /></a>
-                <h4>La domotique</h4>
-                <p>La domotique, c’est comme donner un cerveau à votre maison.</p>
+                <h4>Énergie Solaire</h4>
+                <p>Découvrez nos projets d’énergie solaire qui réduisent les coûts énergétiques tout en respectant l'environnement.</p>
             </div>
         </div>
     </div>
 
     <footer id="contact">
-        <p>Contactez-nous : doanioafrica@gmail.com | Tél : +228 92123951</p>
-        <a href="contacte.html" class="btn">Demandez un devis</a>
-    </footer>
-
-</body>
-</html>
+        <p>Contactez-nous : doanioafrica@gmail.com Num : 92123951
