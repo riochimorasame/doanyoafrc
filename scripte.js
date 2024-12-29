@@ -9,7 +9,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     var platform = document.getElementById('platform').value;
     var message = document.getElementById('message').value;
 
-    var mailtoLink = 'mailto:doanyoafrica@gmail.com'
+    var mailtoLink = 'mailto:doanyonafrica@gmail.com'
                     + '?subject=Demande de contact'
                     + '&body=Nom: ' + nom
                     + '%0APrénom: ' + prenom
