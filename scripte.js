@@ -1,23 +1,25 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    var nom = document.getElementById('nom').value;
-    var prenom = document.getElementById('prenom').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var pays = document.getElementById('pays').value;
-    var platform = document.getElementById('platform').value;
-    var message = document.getElementById('message').value;
+<script>
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+  event.preventDefault();
 
-    var mailtoLink = 'mailto:doanyoafrica@gmail'.com 
-                    + '?subject=Demande de contact'
-                    + '&body=Nom: ' + nom
-                    + '%0APrénom: ' + prenom
-                    + '%0AEmail: ' + email
-                    + '%0ATéléphone: ' + phone
-                    + '%0APays: ' + pays
-                    + '%0APlateforme de réponse: ' + platform
-                    + '%0A%0AMessage: ' + message;
-    
-    window.location.href = mailtoLink;
+  const nom       = document.getElementById('nom').value.trim();
+  const prenom    = document.getElementById('prenom').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const phone     = document.getElementById('phone').value.trim();
+  const pays      = document.getElementById('pays').value.trim();
+  const platform  = document.getElementById('platform').value.trim();
+  const message   = document.getElementById('message').value.trim();
+
+  const subject = encodeURIComponent('Demande de contact');
+  const body =
+    'Nom: '        + nom      + '%0A' +
+    'Prénom: '     + prenom   + '%0A' +
+    'Email: '      + email    + '%0A' +
+    'Téléphone: '  + phone    + '%0A' +
+    'Pays: '       + pays     + '%0A' +
+    'Plateforme de réponse: ' + platform + '%0A%0A' +
+    'Message: '    + message;
+
+  window.location.href = `mailto:doanyoafrica@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
 });
+</script>
