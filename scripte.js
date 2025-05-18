@@ -1,25 +1,33 @@
+<!-- … contenu de la page … -->
+
+<form id="contactForm">
+  <!-- vos champs -->
+</form>
+
 <script>
-document.getElementById('contactForm').addEventListener('submit', function (event) {
-  event.preventDefault();
+window.addEventListener('DOMContentLoaded', () => {
 
-  const nom       = document.getElementById('nom').value.trim();
-  const prenom    = document.getElementById('prenom').value.trim();
-  const email     = document.getElementById('email').value.trim();
-  const phone     = document.getElementById('phone').value.trim();
-  const pays      = document.getElementById('pays').value.trim();
-  const platform  = document.getElementById('platform').value.trim();
-  const message   = document.getElementById('message').value.trim();
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  const subject = encodeURIComponent('Demande de contact');
-  const body =
-    'Nom: '        + nom      + '%0A' +
-    'Prénom: '     + prenom   + '%0A' +
-    'Email: '      + email    + '%0A' +
-    'Téléphone: '  + phone    + '%0A' +
-    'Pays: '       + pays     + '%0A' +
-    'Plateforme de réponse: ' + platform + '%0A%0A' +
-    'Message: '    + message;
+    const get = id => encodeURIComponent(document.getElementById(id).value.trim());
 
-  window.location.href = `mailto:doanyoafrica@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+    const body =
+      `Nom: ${get('nom')}`           + '%0A' +
+      `Prénom: ${get('prenom')}`     + '%0A' +
+      `Email: ${get('email')}`       + '%0A' +
+      `Téléphone: ${get('phone')}`   + '%0A' +
+      `Pays: ${get('pays')}`         + '%0A' +
+      `Plateforme de réponse: ${get('platform')}` + '%0A%0A' +
+      `Message: ${get('message')}`;
+
+    const url =
+      `mailto:doanyoafrica@gmail.com?subject=${encodeURIComponent('Demande de contact')}`
+      + `&body=${body}`;
+
+    window.location.href = url;
+  });
+
 });
 </script>
+</body>
